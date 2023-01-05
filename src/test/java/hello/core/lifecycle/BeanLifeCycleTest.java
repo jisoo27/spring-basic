@@ -18,10 +18,10 @@ public class BeanLifeCycleTest {
     @Configuration
     static class LifeCycleConfig {
 
-        @Bean
+        @Bean(initMethod = "init", destroyMethod = "close")
         public NetworkClient networkClient() {
             NetworkClient networkClient = new NetworkClient();
-            networkClient.setUrl("http://hello-spring.dev"); // 객체를 생성한 뒤에 url 값이 설정되기 때문에 url 정보 없이 생성자 부분에서 connect가 호출된다.
+            networkClient.setUrl("http://hello-spring.dev");
             return networkClient;
         }
     }
